@@ -43,7 +43,7 @@ services:
     labels:
       io.portainer.accesscontrol.teams: /certh
     ports:
-      - "16300:16300"
+      - "36000:36000"
     networks:
       - nlu_network
     depends_on:
@@ -56,7 +56,7 @@ services:
     labels:
       io.portainer.accesscontrol.teams: /certh
     ports:
-      - "16400:16400"
+      - "36001:36001"
     networks:
       - nlu_network
     depends_on:
