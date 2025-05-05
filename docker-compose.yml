@@ -11,6 +11,8 @@ services:
       - nlu_network
     depends_on:
       - controller
+    volumes:
+      - ./crypto_tool:/app
 
   controller:
     image: harbor.ceasefire.rid-intrasoft.eu/certh_marketplaces/controller:latest
@@ -20,6 +22,8 @@ services:
       - "16100:16100"
     networks:
       - nlu_network
+    volumes:
+      - ./controller:/app
 
   marketplaces:
     image: harbor.ceasefire.rid-intrasoft.eu/certh_marketplaces/marketplaces:latest
@@ -31,20 +35,11 @@ services:
       - nlu_network
     depends_on:
       - controller
+    volumes:
+      - ./marketplaces:/app
 
   pdf_highlight:
     image: harbor.ceasefire.rid-intrasoft.eu/certh_marketplaces/pdf_highlight:latest
-    labels:
-      io.portainer.accesscontrol.teams: /certh
-    ports:
-      - "36000:36000"
-    networks:
-      - nlu_network
-    depends_on:
-      - controller
-
-  reverse_image_search:
-    image: harbor.ceasefire.rid-intrasoft.eu/certh_marketplaces/reverse_image_search:latest
     labels:
       io.portainer.accesscontrol.teams: /certh
     ports:
@@ -53,6 +48,21 @@ services:
       - nlu_network
     depends_on:
       - controller
+    volumes:
+      - ./pdf_highlight:/app
+
+  reverse_image_search:
+    image: harbor.ceasefire.rid-intrasoft.eu/certh_marketplaces/reverse_image_search:latest
+    labels:
+      io.portainer.accesscontrol.teams: /certh
+    ports:
+      - "36000:36000"
+    networks:
+      - nlu_network
+    depends_on:
+      - controller
+    volumes:
+      - ./reverse_image_search:/app
 
 networks:
   nlu_network:
