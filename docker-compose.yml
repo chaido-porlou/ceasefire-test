@@ -59,13 +59,13 @@ services:
     restart: unless-stopped
     ports:
       - "36000:36000"
-    networks:
-      - nlu_network
+    # networks:
+    #   - nlu_network
     # depends_on:
     #   - controller
    # volumes:
    #   - ./reverse_image_search:/app
 
-networks:
-  nlu_network:
-    external: true
+# networks:
+#   nlu_network:
+#     external: true
